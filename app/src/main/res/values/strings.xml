@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name" translatable="false">SensorApp</string>
+    <string name="camara">Camara</string>
+    <string name="gps">GPS</string>
+</resources>
