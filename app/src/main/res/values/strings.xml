@@ -9,4 +9,7 @@
     <string name="locationServiceNotEnabled">location service not enabled</string>
     <string name="openLocationSettings">Open Location Settings</string>
     <string name="cancel">Cancel</string>
+    <string name="deniedLocationPermission">Denied Location Permission</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
 </resources>

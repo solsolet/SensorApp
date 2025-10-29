@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.health.connect.datatypes.ExerciseRoute
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -20,14 +19,10 @@ import androidx.core.content.ContextCompat
 import es.ua.eps.sensorapp.databinding.GpsActivityBinding
 
 class GpsActivity : AppCompatActivity() {
-
     private lateinit var bindings : GpsActivityBinding
     private lateinit var locationListener : LocationListener
     private lateinit var locationManager : LocationManager
-    private lateinit var provider : String
-
     private val LOCATION_PERMISSION_REQUEST = 1001
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,11 +34,10 @@ class GpsActivity : AppCompatActivity() {
             buttonLocation.setOnClickListener { showLocation() }
         }
     }
-
     private fun showLocation() {
         locationManager = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
-        // Make sure gPS active
+        // Make sure GPS active
         val isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
         if (!isGPSEnabled) {
             requestLocationServicesActivation()
@@ -68,7 +62,7 @@ class GpsActivity : AppCompatActivity() {
         locationListener = object : LocationListener {
             override fun onLocationChanged(location: Location) {
                 updateLocation(location)
-                // Si vols, pots deixar d’escoltar després de rebre la primera ubicació:
+                // Stop listening after getting 1st location
                 locationManager.removeUpdates(this)
             }
 
@@ -77,7 +71,7 @@ class GpsActivity : AppCompatActivity() {
             @Deprecated("Deprecated in API 29")
             override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
         }
-        // Sol·licita actualitzacions de posició
+        // Request position updates
         locationManager.requestLocationUpdates(
             LocationManager.GPS_PROVIDER,
             0L,
@@ -88,7 +82,8 @@ class GpsActivity : AppCompatActivity() {
     private fun updateLocation(location: Location) {
         val lat = location.latitude
         val lon = location.longitude
-        bindings.textViewLocation.text = "Latitud: $lat\nLongitud: $lon"
+        val txtLoc = "${getString(R.string.latitude)}: $lat\n${getString(R.string.longitude)}: $lon"
+        bindings.textViewLocation.text = txtLoc
     }
     private fun requestLocationServicesActivation() {
         val dialog = AlertDialog.Builder(this)
@@ -116,8 +111,7 @@ class GpsActivity : AppCompatActivity() {
         ) {
             showLocation()
         } else {
-            Toast.makeText(this, "Denied location permission", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.deniedLocationPermission), Toast.LENGTH_SHORT).show()
         }
     }
-
 }
