@@ -1,12 +1,15 @@
-package es.ua.eps
+package es.ua.eps.sensorapp
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.enableEdgeToEdge
-import es.ua.eps.databinding.MainActivityBinding
+import android.content.Intent
+import android.view.View
+import es.ua.eps.sensorapp.CamaraActivity
+import es.ua.eps.sensorapp.GpsActivity
+import es.ua.eps.sensorapp.databinding.MainActivityBinding
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var bindings : MainActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,9 +20,16 @@ class MainActivity : AppCompatActivity() {
         with(bindings) {
             setContentView(root)
 
-            camara.setOnClickListener {  }
-            gps.setOnClickListener {  }
+            buttonCamara.setOnClickListener { showCamara() }
+            buttonGPS.setOnClickListener { showGPS() }
         }
-
+    }
+    private fun showCamara(){
+        val camaraIntent = Intent(this@MainActivity, CamaraActivity::class.java)
+        startActivity(camaraIntent)
+    }
+    private fun showGPS(){
+        val gpsIntent = Intent(this@MainActivity, GpsActivity::class.java)
+        startActivity(gpsIntent)
     }
 }
