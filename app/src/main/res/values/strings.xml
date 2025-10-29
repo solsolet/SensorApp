@@ -4,4 +4,9 @@
     <string name="gps">GPS</string>
     <string name="take_photo">Take photo</string>
     <string name="start_capture">Start capture</string>
+    <string name="show_location">Show Location</string>
+    <string name="alert">Alert</string>
+    <string name="locationServiceNotEnabled">location service not enabled</string>
+    <string name="openLocationSettings">Open Location Settings</string>
+    <string name="cancel">Cancel</string>
 </resources>

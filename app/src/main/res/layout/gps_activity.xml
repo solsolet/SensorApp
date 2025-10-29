@@ -4,4 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <Button
+        android:id="@+id/buttonLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="@string/show_location" />
+
+    <TextView
+        android:id="@+id/textViewLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pending Location" />
 </LinearLayout>
